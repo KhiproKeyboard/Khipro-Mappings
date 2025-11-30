@@ -32,12 +32,12 @@ jobs:
       
       - name: Run heliboard conversion script
         run: |
-          python convert_mim_to_json_heliboard.py
+          python scripts/convert_mim_to_json_heliboard.py
           echo "✓ Heliboard mappings generated"
       
       - name: Run full conversion script
         run: |
-          python convert_mim_to_json.py
+          python scripts/convert_mim_to_json.py
           echo "✓ Full mappings generated"
       
       - name: Upload heliboard JSON artifact
