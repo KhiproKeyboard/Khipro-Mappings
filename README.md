@@ -1,16 +1,18 @@
-# Khipro Mappings
+# ক্ষিপ্র ম্যাপিংস (Khipro Mappings)
 
-This repository converts official [Khipro M17N](https://github.com/rank-coder/khipro-m17n)'s all mappings to JSON mappings.
+[FOR ENGLISH click here](README.en.md)
 
-## What's Inside
+এই রিপোজিটরিটি অফিসিয়াল [Khipro M17N](https://github.com/rank-coder/khipro-m17n)-এর সকল ম্যাপিংকে JSON ম্যাপিংয়ে রূপান্তর করে।
 
-- **Full mappings** - All mappings from bn-khipro.mim
-- **Heliboard compatible mappings** - Filtered version for Heliboard keyboard
+## এর ভেতরে কী আছে
 
-## Usage
+- **সম্পূর্ণ ম্যাপিংস (Full mappings)** - bn-khipro.mim-এর সকল ম্যাপিং।
+- **Heliboard সামঞ্জস্যপূর্ণ ম্যাপিংস** - Heliboard কিবোর্ডের জন্য ফিল্টার করা সংস্করণ।
 
-Go to **Actions** → **Run workflow** → Enter commit message → **Run**
+## ব্যবহার পদ্ধতি (Usage)
 
-Generated files:
+**Actions**-এ যান → **Run workflow**-এ ক্লিক করুন → একটি 'commit message' লিখুন → **Run**-এ ক্লিক করুন।
+
+তৈরি হওয়া ফাইলগুলো (Generated files):
 - `khipro-mappings.json`
 - `khipro-mappings-heliboard.json`
