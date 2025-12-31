@@ -2,17 +2,22 @@
 
 [FOR ENGLISH click here](README.en.md)
 
-এই রিপোজিটরিটি অফিসিয়াল [Khipro M17N](https://github.com/rank-coder/khipro-m17n)-এর সকল ম্যাপিংকে JSON ম্যাপিংয়ে রূপান্তর করে।
+এই রিপোজিটরিটি [Khipro M17N](https://github.com/rank-coder/khipro-m17n)-এর ম্যাপিংগুলোকে M17N ফরম্যাট থেকে JSON ফরম্যাটে রূপান্তর করে।
 
-## এর ভেতরে কী আছে
+## কী কী আছে
 
-- **সম্পূর্ণ ম্যাপিংস (Full mappings)** - bn-khipro.mim-এর সকল ম্যাপিং।
-- **Heliboard সামঞ্জস্যপূর্ণ ম্যাপিংস** - Heliboard কিবোর্ডের জন্য ফিল্টার করা সংস্করণ।
+| ফাইল                      | বর্ণনা                                                                   |
+| ------------------------- | ------------------------------------------------------------------------ |
+| `scripts/full.py`         | M17N `.mim` ফাইল থেকে সম্পূর্ণ ম্যাপিং JSON-এ রূপান্তর করে               |
+| `scripts/touchscreen.py`  | টাচস্ক্রিন অ্যাডপশন গাইড অনুযায়ী কিছু এক্সক্লুশন ও পরিবর্তন প্রয়োগ করে |
+| `output/full.json`        | `.mim` ফাইল থেকে সম্পূর্ণ ম্যাপিং JSON-এ রূপান্তরিত                      |
+| `output/touchscreen.json` | ক্ষিপ্র টাচস্ক্রিন অ্যাডপশন - কিছু এক্সক্লুশন ও পরিবর্তন প্রয়োগ করা     |
 
-## ব্যবহার পদ্ধতি (Usage)
+## ব্যবহার পদ্ধতি
 
-**Actions**-এ যান → **Run workflow**-এ ক্লিক করুন → একটি 'commit message' লিখুন → **Run**-এ ক্লিক করুন।
+GitHub Actions ব্যবহার করে:
+**Actions** → **Convert MIM to JSON** → **Run workflow**
 
-তৈরি হওয়া ফাইলগুলো (Generated files):
-- `khipro-mappings.json`
-- `khipro-mappings-heliboard.json`
+- কাস্টম `.mim` ফাইলের জন্য: `mim_url` ফিল্ডে URL দিন
+- কাস্টম কমিট মেসেজের জন্য: `commit_message` ফিল্ডে লিখুন
+- ডিফল্ট ব্যবহার করতে ফাঁকা রাখুন, তারপর **Run** ক্লিক করুন

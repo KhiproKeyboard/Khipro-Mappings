@@ -1,0 +1,64 @@
+name: Convert MIM to JSON
+
+on:
+  workflow_dispatch:
+    inputs:
+      mim_url:
+        description: 'External .mim file URL (optional)'
+        required: false
+        default: 'https://raw.githubusercontent.com/rank-coder/khipro-m17n/main/bn-khipro.mim'
+      commit_message:
+        description: 'Commit message (optional)'
+        required: false
+        default: 'Update Khipro mappings'
+
+permissions:
+  contents: write
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Download .mim file
+        run: |
+          curl -f -o bn-khipro.mim "${{ github.event.inputs.mim_url }}" || exit 1
+          echo "Downloaded $(stat -c%s bn-khipro.mim) bytes"
+
+      - name: Run touchscreen conversion
+        run: python scripts/touchscreen.py
+
+      - name: Run full conversion
+        run: python scripts/full.py
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet output/touchscreen.json output/full.json; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push
+        if: steps.changes.outputs.has_changes == 'true'
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add output/touchscreen.json output/full.json
+          git commit -m "${{ github.event.inputs.commit_message }}"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: No changes detected
+        if: steps.changes.outputs.has_changes == 'false'
+        run: echo "No changes detected - skipping commit"

@@ -2,17 +2,22 @@
 
 [বাংলায় পড়ুন](README.md)
 
-This repository converts official [Khipro M17N](https://github.com/rank-coder/khipro-m17n)'s all mappings to JSON mappings.
+Converts [Khipro M17N](https://github.com/rank-coder/khipro-m17n) keyboard mappings from M17N format to JSON.
 
 ## What's Inside
 
-- **Full mappings** - All mappings from bn-khipro.mim
-- **Heliboard compatible mappings** - Filtered version for Heliboard keyboard
+| File | Description |
+|------|-------------|
+| `scripts/full.py` | Converts all mappings from M17N `.mim` file to JSON |
+| `scripts/touchscreen.py` | Applies Khipro touchscreen adoption guide with some exclusions and changes |
+| `output/full.json` | All mappings from `.mim` file converted to JSON |
+| `output/touchscreen.json` | Khipro touchscreen adoption - with some exclusions and changes applied |
 
 ## Usage
 
-Go to **Actions** → **Run workflow** → Enter commit message → **Run**
+Using GitHub Actions:
+**Actions** → **Convert MIM to JSON** → **Run workflow**
 
-Generated files:
-- `khipro-mappings.json`
-- `khipro-mappings-heliboard.json`
+- For custom `.mim` file: paste URL in `mim_url` field
+- For custom commit message: type in `commit_message` field
+- Leave blank for defaults, then click **Run**
